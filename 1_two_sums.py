@@ -1,7 +1,6 @@
 class Solution:
     def twoSum(self, nums, target):
         """
-        url: https://leetcode.com/problems/two-sum/description/
         Given an array of integers, return indices of the two numbers such that
         they add up to a specific target.
 
@@ -18,6 +17,8 @@ class Solution:
         :type nums: List[int]
         :type target: int
         :rtype: List[int]
+
+        URL: https://leetcode.com/problems/two-sum/description/
         """
         i = 0
         total = 0
