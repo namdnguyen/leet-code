@@ -1,5 +1,5 @@
 class Solution:
-    def twoSum(self, nums, target, verbose = False):
+    def twoSum(self, nums, target):
         """
         url: https://leetcode.com/problems/two-sum/description/
         Given an array of integers, return indices of the two numbers such that
@@ -19,17 +19,33 @@ class Solution:
         :type target: int
         :rtype: List[int]
         """
-
         i = 0
-        sum = None
-        while sum != target:
-            for i in range(len(nums)):
-                for j in range(i+1, len(nums)):
-                    sum = nums[i] + nums[j]
-                    if verbose == True:
-                        print(sum)
+        sum = 0
+        complements = []
+
+        complements[:] = [target - i for i in nums]
+        print(complements)
+        complements[:] = [i for i in nums if i in complements]
+        print(complements)
+        print(len(complements))
+
+
+        if len(complements) > 2:
+            while sum != target:
+                for i in range(len(complements)):
+                    for j in range(i+1, len(complements)):
+                        sum = complements[i] + complements[j]
+                        if sum == target:
+                            break
                     if sum == target:
                         break
-                if sum == target:
-                    break
-            return [i, j]
+            first = nums.index(complements[i])
+            second = nums.index(complements[j])
+        elif complements[0] == complements[1]:
+            first = nums.index(complements[0])
+            second = [i for i, e in enumerate(nums) if e == complements[0]]
+            second = second[1]
+        else:
+            first = nums.index(complements[0])
+            second = nums.index(complements[1])
+        return [first, second]
