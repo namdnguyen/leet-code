@@ -24,10 +24,7 @@ class Solution:
         complements = []
 
         complements[:] = [target - i for i in nums]
-        print(complements)
         complements[:] = [i for i in nums if i in complements]
-        print(complements)
-        print(len(complements))
 
 
         if len(complements) > 2:
