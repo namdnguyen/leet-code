@@ -20,21 +20,20 @@ class Solution:
         :rtype: List[int]
         """
         i = 0
-        sum = 0
+        total = 0
         complements = []
 
         complements[:] = [target - i for i in nums]
         complements[:] = [i for i in nums if i in complements]
 
-
         if len(complements) > 2:
-            while sum != target:
+            while total != target:
                 for i in range(len(complements)):
                     for j in range(i+1, len(complements)):
-                        sum = complements[i] + complements[j]
-                        if sum == target:
+                        total = complements[i] + complements[j]
+                        if total == target:
                             break
-                    if sum == target:
+                    if total == target:
                         break
             first = nums.index(complements[i])
             second = nums.index(complements[j])
