@@ -1,3 +1,5 @@
+import re
+
 class Solution:
     def myAtoi(self, str):
         """
@@ -38,8 +40,8 @@ class Solution:
         Input: "   -42"
         Output: -42
         Explanation: The first non-whitespace character is '-', which is the
-                     minus sign. Then take as many numerical digits as possible,
-                     which gets 42.
+                     minus sign. Then take as many numerical digits as
+                     possible, which gets 42.
 
         Example 3:
 
@@ -68,3 +70,25 @@ class Solution:
 
         URL: https://leetcode.com/problems/string-to-integer-atoi/description/
         """
+        string = str.replace(' ', '')
+        valid_reg = re.compile('[0-9-+]')
+
+        if valid_reg.match(string[0]) is None:
+            return 0
+        else:
+            num_reg = re.compile('\d+')
+            match = num_reg.search(string)
+            start = match.start()
+            is_negative = bool(string[start - 1] == '-')
+
+            if is_negative is True:
+                num_int = int(match.group()) * -1
+            else:
+                num_int = int(match.group())
+
+            if num_int > 2**31 - 1:
+                return 2**31 - 1
+            elif num_int < -2**31:
+                return -2**31
+            else:
+                return num_int
