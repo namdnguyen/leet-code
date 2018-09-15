@@ -1,5 +1,6 @@
 import re
 
+
 class Solution:
     def myAtoi(self, str):
         """
@@ -71,13 +72,22 @@ class Solution:
         URL: https://leetcode.com/problems/string-to-integer-atoi/description/
         """
         string = str.replace(' ', '')
-        valid_reg = re.compile('[0-9-+]')
+        num_reg = re.compile('\\d+')
+        match = num_reg.search(string)
 
-        if valid_reg.match(string[0]) is None:
+        if string == "":
+            return 0
+        elif match is None:
+            return 0
+        elif (string[0] != '-' and
+              string[0] != '+' and
+              string[0].isdigit() is False):
+            return 0
+        elif string[0] == '-' and string[1].isdigit() is False:
+            return 0
+        elif string[0] == '+' and string[1].isdigit() is False:
             return 0
         else:
-            num_reg = re.compile('\d+')
-            match = num_reg.search(string)
             start = match.start()
             is_negative = bool(string[start - 1] == '-')
 
