@@ -76,17 +76,17 @@ class Solution:
         match = num_reg.search(string)
 
         if string == "":
-            return 0
+            converted = 0
         elif match is None:
-            return 0
+            converted = 0
         elif (string[0] != '-' and
               string[0] != '+' and
               string[0].isdigit() is False):
-            return 0
+            converted = 0
         elif string[0] == '-' and string[1].isdigit() is False:
-            return 0
+            converted = 0
         elif string[0] == '+' and string[1].isdigit() is False:
-            return 0
+            converted = 0
         else:
             start = match.start()
             is_negative = bool(string[start - 1] == '-')
@@ -97,8 +97,10 @@ class Solution:
                 num_int = int(match.group())
 
             if num_int > 2**31 - 1:
-                return 2**31 - 1
+                converted = 2**31 - 1
             elif num_int < -2**31:
-                return -2**31
+                converted = -2**31
             else:
-                return num_int
+                converted = num_int
+
+        return converted
