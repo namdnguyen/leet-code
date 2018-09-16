@@ -89,7 +89,10 @@ class Solution:
             converted = 0
         else:
             start = match.start()
-            is_negative = bool(string[start - 1] == '-')
+            if match.start() != 0:
+                is_negative = bool(string[start - 1] == '-')
+            else:
+                is_negative = False
 
             if is_negative is True:
                 num_int = int(match.group()) * -1
