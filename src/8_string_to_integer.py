@@ -71,7 +71,7 @@ class Solution:
 
         URL: https://leetcode.com/problems/string-to-integer-atoi/description/
         """
-        string = str.replace(' ', '')
+        string = str.strip()
         num_reg = re.compile('\\d+')
         match = num_reg.search(string)
 
