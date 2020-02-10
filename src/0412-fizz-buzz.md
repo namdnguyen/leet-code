@@ -10,7 +10,7 @@ But for multiples of three it should output “Fizz” instead of the number and
 
 ### Example:
 
-```python
+```
 n = 15
 
 Return:
